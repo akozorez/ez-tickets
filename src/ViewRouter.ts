@@ -95,7 +95,7 @@ export default class ViewRouter {
         input.onkeyup = (event: Event & { target: any }) => {
             trs.forEach((tr: HTMLTableRowElement) => {
                 tr.setAttribute('hidden', '');
-                if (tr.getAttribute('data-name').includes(event.target.value))
+                if (tr.getAttribute('data-name').toLowerCase().includes(event.target.value.toLowerCase()))
                     tr.removeAttribute('hidden');
             });
         };
