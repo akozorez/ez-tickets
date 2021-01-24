@@ -1,4 +1,4 @@
-import { parse as URLParams } from 'querystring';
+fimport { parse as URLParams } from 'querystring';
 import fetch from 'node-fetch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // @ts-ignore
@@ -28,21 +28,21 @@ export default class ViewRouter {
     }
 
     private async home(): Promise<void> {
-        return fetch('/disciplines.json')
+        return fetch('disciplines.json')
             .then(response => response.json())
             .then(disciplines => this.createTable('homeTable', disciplines))
             .catch(error => this.showError(error.message));
     }
 
     private async discipline(name: string) {
-        return fetch(`/${name}/tickets.json`)
+        return fetch(`${name}/tickets.json`)
             .then(response => response.json())
             .then(data => this.createTable('disciplineTable', data, name))
             .catch(error => this.showError(error.message));
     }
 
     private ticket = async (discipline: string, pathname: string) =>
-        this.loader().then(div => fetch(`/${discipline}/${pathname}`)
+        this.loader().then(div => fetch(`${discipline}/${pathname}`)
             .then(res => res.arrayBuffer())
             .then(buffer => convertToHtml({ arrayBuffer: buffer })
                 .then((result: any) => div.innerHTML = result.value)
@@ -70,10 +70,10 @@ export default class ViewRouter {
             const link: HTMLAnchorElement = document.createElement('a');
             switch (tableType) {
                 case 'homeTable':
-                    link.href = `/index.html?discipline=${data[it].pathname}`;
+                    link.href = `index.html?discipline=${data[it].pathname}`;
                     break;
                 case 'disciplineTable':
-                    link.href = `/index.html?discipline=${disciplineName}&pathname=${data[it].pathname}`;
+                    link.href = `index.html?discipline=${disciplineName}&pathname=${data[it].pathname}`;
                     break;
                 default:
                     break;
