@@ -1,4 +1,4 @@
-fimport { parse as URLParams } from 'querystring';
+import { parse as URLParams } from 'querystring';
 import fetch from 'node-fetch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // @ts-ignore
